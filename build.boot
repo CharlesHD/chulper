@@ -1,4 +1,4 @@
-(def +version+ "1.1")
+(def +version+ "1.1.1")
 
 (set-env!
  :source-paths #{"src"}
@@ -7,7 +7,6 @@
                  [adzerk/bootlaces "0.1.13" :scope "test"]])
 
 (require '[adzerk.bootlaces :refer :all])
-(def +version+ "1.1")
 
 (task-options!
  pom {:project 'chulper
