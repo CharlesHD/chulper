@@ -1,3 +1,5 @@
+(def +version+ "1.1")
+
 (set-env!
  :source-paths #{"src"}
  :target-path "tmp"
