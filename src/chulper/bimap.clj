@@ -51,6 +51,9 @@
       (direct k else))
     (valAt [this k]
       (direct k))
+    clojure.lang.IFn
+    (invoke [this k] (direct k))
+    (invoke [this k else] (direct k else))
   clojure.lang.Counted
     (count [this]
       (count direct))
