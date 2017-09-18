@@ -9,8 +9,8 @@
   [key f]
   (fn [& args] (apply f (map key args))))
 
-(defn real-pmap
-  "Like pmap, but launches futures instead of using a bounded threadpool.
+#?(:clj (defn real-pmap
+          "Like pmap, but launches futures instead of using a bounded threadpool.
   Useful when your tasks might block on each other, and you don't want to
   deadlock by exhausting the default clojure worker threadpool halfway through
   the collection. For instance,
@@ -18,11 +18,11 @@
             b (CyclicBarrier. n)]
         (pmap (fn [i] [i (.await b)]) (range n)))
   ... deadlocks, but replacing `pmap` with `real-pmap` works fine."
-  [f coll]
-  (->> coll
-       (map (fn launcher [x] (future (f x))))
-       doall
-       (map deref)))
+          [f coll]
+          (->> coll
+               (map (fn launcher [x] (future (f x))))
+               doall
+               (map deref))))
 
 ;; map utilities
 
@@ -146,4 +146,4 @@
 
 (defn geometric-mean
   [numbers]
-  (Math/pow (reduce *' numbers) (/ 1 (count numbers))))
+  (Math/pow (reduce * numbers) (/ 1 (count numbers))))
